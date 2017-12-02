@@ -22,5 +22,6 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/',include('blog.urls')),
+    url(r'^api/',include('api.urls')),
     url(r'^$',RedirectView.as_view(url='/blog/',permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
