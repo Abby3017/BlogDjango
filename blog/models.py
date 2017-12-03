@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+from django.dispatch import receiver
 # Create your models here.
 
 class Blogger(models.Model):
@@ -43,8 +47,15 @@ class Comment(models.Model):
   comment = models.TextField()
   created_on = models.DateTimeField(auto_now_add=True)
   blog = models.OneToOneField(Blog)
-  user = models.ForeignKey(User, on_delete=models.SET_NULL,blank=True,null=True)
+  user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='commenter',default=1)
   
+  def __str__(self):
+    return " %s (%s)" %(self.comment[:10], self.user)
+
+@receiver(post_save, sender=User)
+def create_auth_token(sender, instance=None, created = False, **kwargs):
+  if created:
+    Token.objects.create(user=instance)
 
 class Topic (models.Model):
   topic = models.CharField(max_length=50)
