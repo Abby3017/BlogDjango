@@ -18,6 +18,9 @@ class Blogger(models.Model):
 
   def __str__(self):
     return '%s, %s' % (self.last_name, self.first_name)
+  
+  def get_absolute_url(self):
+    return reverse('blogger-detail', args=[str(self.id)])
 
 class Blog(models.Model):
   """

@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %} 
+
+{% block content %}
+<h1>Blog title {{blog.title}}</h1>
+<p>Author : {{blog.blogger}}</p>
+<p>{{blog.content}}</p>
+<p>Topic : {{blog.topics}}</p>
+<p>{{blog.created_on}}</p>
+{% endblock%}
