@@ -7,5 +7,6 @@ urlpatterns = [
   url('^blogs/$',views.BlogListView.as_view(),name="blogs"),
   url('^blog/(?P<pk>\d+)$',views.BlogDetailView.as_view(),name="blog-detail"),
   url('^blogger/(?P<pk>\d+)$', views.BloggerDetailView.as_view(),name='blogger-detail'),
-  url('^bloggers/$',views.BloggerListView.as_view(),name='bloggers')
+  url('^bloggers/$',views.BloggerListView.as_view(),name='bloggers'),
+  # url('^blog/(?P<pk>\d+)$/create',,name='create-comment')
 ]

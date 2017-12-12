@@ -4,6 +4,14 @@
 <h1>Blog title {{blog.title}}</h1>
 <p>Author : {{blog.blogger}}</p>
 <p>{{blog.content}}</p>
-<p>Topic : {{blog.topics}}</p>
+<p>
+  <ul>
+  Topic : {% for topic in blog.topics.all%}
+  <li>{{topic.topic}}</li>
+  {% endfor %} 
+</ul>
+</p>
 <p>{{blog.created_on}}</p>
+<p>{{blog.comment.comment}}</p>
+<p>{{blog.comment.user.username}}</p>
 {% endblock%}

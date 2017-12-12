@@ -14,9 +14,16 @@ class BlogListView(generic.ListView):
 class BlogDetailView(generic.DetailView):
   model = Blog
 
+  def get_context_data(self, **kwargs):
+    context = super(BlogDetailView,self).get_context_data(**kwargs)
+    context['comment'] = Comment.objects.filter(blog = self.get_object())
+    return context
+
 class BloggerDetailView(generic.DetailView):
   model = Blogger
 
 class BloggerListView(generic.ListView):
   model = Blogger
   paginate_by = 5
+
+# class CommentCreateView(generic.Cre)
